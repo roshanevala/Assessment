@@ -6,52 +6,36 @@ const TwoSum = () => {
   const [target, setTarget] = useState('');
   const [result, setResult] = useState<number[] | null>(null);
 
-  const parseInputArray = (input: string): number[] => {
-    return input
-      .split(',')
-      .map(num => parseFloat(num.trim()))
-      .filter(num => !isNaN(num));
-  };
-
   const handleTwoSum = () => {
-    const numbers = parseInputArray(numbersInput);
+    const numbers = numbersInput.split(',').map(n => parseFloat(n.trim()));
     const t = parseFloat(target);
 
-    if (!Array.isArray(numbers) || numbers.length < 2 || isNaN(t)) {
-      Alert.alert('Invalid Input', 'Please enter a valid array and target.');
+    if (numbers.length < 2 || numbers.some(isNaN) || isNaN(t)) {
+      Alert.alert('Invalid Input', 'Enter a valid sorted list and target.');
       return;
     }
 
-    const res = twoSum(numbers, t);
-    if (res.length === 2) {
-      setResult(res);
-    } else {
-      Alert.alert('No Solution', 'No two numbers add up to the target.');
-      setResult(null);
-    }
-  };
-
-  const twoSum = (numbers: number[], targetValue: number): number[] => {
-    let left = 0;
-    let right = numbers.length - 1;
-
+    let left = 0,
+      right = numbers.length - 1;
     while (left < right) {
       const sum = numbers[left] + numbers[right];
-      if (sum === targetValue) {
-        return [left + 1, right + 1];
-      } else if (sum < targetValue) {
+      if (sum === t) {
+        setResult([left + 1, right + 1]);
+        return;
+      } else if (sum < t) {
         left++;
       } else {
         right--;
       }
     }
 
-    return [];
+    Alert.alert('No Match', 'No two numbers add up to the target.');
+    setResult(null);
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Two Sum II - Input Array Is Sorted</Text>
+      <Text style={styles.header}>Two Sum - Input Array</Text>
       <TextInput
         style={styles.input}
         placeholder="Enter sorted numbers (e.g. 1,2,4,6)"

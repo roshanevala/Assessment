@@ -6,16 +6,17 @@ This is a React Native application built for the assessment task. It contains mu
 - Add Numbers   : Input two numbers and view their sum.
 - Two Sum II    : Given a sorted array and target, returns the indices of two numbers that add up to the target.
 
-## Project Structure
+## 📂 Project Structure
 
-/Assessment
-├── /features
-│ ├── AddNumbers.tsx
-│ ├── TwoSum.tsx
-│ └── Navbar.tsx
-├── App.tsx
-├── package.json
-└── README.md
+    Assessment/
+    ├── App.tsx
+    ├── features/
+    │ ├── AddNumbers.tsx
+    │ ├── TwoSum.tsx
+    │ └── Navbar.tsx
+    ├── package.json
+    ├── tsconfig.json
+    └── README.md
 
 ## Requirements
 
@@ -50,6 +51,10 @@ pod install
 cd ..
 npx react-native run-ios
 ```
+
+## Screenshots
+
+Check out the screenshots in [Screenshots](./screenshots) folder.
 
 ## Author
 
